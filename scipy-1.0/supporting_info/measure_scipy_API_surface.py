@@ -75,10 +75,11 @@ modules = [
 ]
 
 api_surface = dict()
-exclude = set(['np', 'numpy', 'division', 'absolute_import', 'print_function'])
+exclude = set(['np', 'numpy', 'test', 'division', 'absolute_import', 'print_function'])
 for module in modules:
     all_objects = set(dir(module))
     private = set((s for s in all_objects if s.startswith('_')))
     api_surface[module] = len(all_objects - private - exclude)
+    print(module, api_surface[module])
 
 print(sum(api_surface.values()))
